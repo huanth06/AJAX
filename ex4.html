@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        let promise1 = axios.get('http://localhost:3000/students/1').then((res)=>{
+            return res.data.score;
+        });
+        let promise2 = axios.get('http://localhost:3000/students/2').then((res)=>{
+            return res.data.score;
+        });
+        let promise3 =  axios.get('http://localhost:3000/students/3').then((res)=>{
+            return res.data.score;
+        });
+        Promise.all([promise1,promise2,promise3]).then((result)=>{
+            let total = result.reduce((score,currentScore)=>{
+                return score + currentScore;
+            },0);
+            console.log(total);
+        });
+    </script>
+</body>
+</html>
